@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using School.Infrastructure.Abstracts;
 using School.Infrastructure.Data;
+using School.Infrastructure.InfrastructureBases;
 using School.Infrastructure.Repositories;
 
 namespace School.Infrastructure
@@ -16,6 +17,7 @@ namespace School.Infrastructure
             {
                 option.UseSqlServer(configuration.GetConnectionString("Default"));
             });
+            services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
 
             return services;
 
